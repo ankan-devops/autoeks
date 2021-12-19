@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloweb-deployment
+  labels:
+    app: helloweb
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloweb
+  template:
+    metadata:
+      labels:
+        app: helloweb
+    spec:
+      containers:
+      - name: helloweb
+        image: 323172295399.dkr.ecr.ap-northeast-2.amazonaws.com/checking3:${BITBUCKET_BUILD_NUMBER}
+        ports:
+        - containerPort: 80
